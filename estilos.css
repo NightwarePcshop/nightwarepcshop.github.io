@@ -10,16 +10,13 @@
   position: absolute;
 }
 
-nav#mainNav {
-
-    display: inline-block;
-
-    margin: 20px;
-
-    padding: 20px;
-
-    border: 1px solid #4800ff;
-
+.social-icons{
+  display: inline;
+    font-size: 24px;
+    margin-right: 3px;
+}
+h6 {
+  font: oblique bold 120% cursive;
 }
 #video {
  position: header;
