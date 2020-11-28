@@ -1,52 +1,86 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-LX1V3K50DG"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+<title>Chat en vivo</title>
+<link rel="stylesheet" type="text/css" href="estilos.css">
+<link rel="stylesheet" type="text/php" href="index.jQuery.ajax">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+<link rel="icon" type="image/jpg" href="/Tema 1/logo página web 1.jpg">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<form id="loginform" method="post">
+    <div>
+        Username:
+        <input type="text" name="username" id="username" />
+        Password:
+        <input type="password" name="password" id="password" />
+        <input type="submit" name="loginBtn" id="loginBtn" value="Login" />
+    </div>
+</form>
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#loginform').submit(function(e) {
+        e.preventDefault();
+        $.ajax({
+            type: "POST",
+            url: 'login.php',
+            data: $(this).serialize(),
+            success: function(response)
+            {
+                var jsonData = JSON.parse(response);
 
-  gtag('config', 'G-LX1V3K50DG');
+                // user is logged in successfully in the back-end
+                // let's redirect
+                if (jsonData.success == "1")
+                {
+                    location.href = 'my_profile.php';
+                }
+                else
+                {
+                    alert('Invalid Credentials!');
+                }
+           }
+       });
+     });
+});
 </script>
-  <title>Nightware</title>
-    <link rel="stylesheet" type="text/css" href="css/estilo.css">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
-  <link rel="icon" type="image/jpg" href="logo">
-  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-
-  <div class='wrapper'>
-      </div>
-  <div class='firstDiv'></div>
-    <button class="w3-button w3-teal w3-xlarge" onclick="w3_open()">☰</button>
-    <div class="w3-sidebar w3-bar-block" style="display:none" id="mySidebar">
-    <button onclick="w3_close()" class="w3-bar-item w3-large">Close &times;</button>
-    <a href="index.html" class="w3-bar-item w3-button">HOME</a>
-    <a href="Ordenadores.html" class="w3-bar-item w3-button">ORDENADORES</a>
-    <a href="Chat en vivo.html" class="w3-bar-item w3-button">CHAT EN VIVO</a>
-    <a href="Donaciones.html" class="w3-bar-item w3-button">DONACIONES</a>
-    <a href="Información.html" class="w3-bar-item w3-button">INFORMACIÓN</a>
-  </div>
-  <div class='secondDiv'></div>
-    <img src="home(1).gif"  width="1350" height="300">
-  </img>
-
 </head>
 <body>
   <style>
   body{background-color: black;}
   h2{color:white;}
   h6{font: oblique bold 120% cursive;}
-  p{color:red;}
+  p{color:red;
+  text-align: center
+  }
+  p{
+    font: oblique bold 120%  cursive
+  }
   footer{background-color: grey;
   margin: 20px
  }
 
   </style>
+  <div class="w3-sidebar w3-bar-block" style="display:none" id="mySidebar">
+  <button onclick="w3_close()" class="w3-bar-item w3-large">Close &times;</button>
+  <a href="Index.HTML" class="w3-bar-item w3-button">HOME</a>
+  <a href="Ordenadores.html" class="w3-bar-item w3-button">ORDENADORES</a>
+  <a href="Chat en vivo.html" class="w3-bar-item w3-button">CHAT EN VIVO</a>
+  <a href="Donaciones.html" class="w3-bar-item w3-button">DONACIONES</a>
+  <a href="Información.html" class="w3-bar-item w3-button">INFORMACIÓN</a>
+</div>
+<!-- Page Content -->
+<div class="w3-teal">
+  <button class="w3-button w3-teal w3-xlarge" onclick="w3_open()">☰</button>
+  <div class="w3-container">
+
+  </div>
+</div>
+
+<img src="CHAT EN VIVO(1).gif"  width="1350" height="300">
+</img>
 
 <script>
 function w3_open() {
@@ -57,167 +91,77 @@ function w3_close() {
   document.getElementById("mySidebar").style.display = "none";
 }
 </script>
-<body>
-  <div align="center">
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- Homepage Leaderboard -->
-<br>
-<ins class="adsbygoogle"
+<div id="wrapper">
+  <div id="menu">
+        <p class="welcome">Welcome: <b></b></p>
+        <p class="logout"><a id="exit" href="#">Exit Chat</a></p>
+        <div style="clear:both"></div>
+    </div>
 
-data-ad-client="ca-pub-1234567890123456"
-data-ad-slot="1234567890"></ins>
-<script>
-(adsbygoogle = window.adsbygoogle || []).push({});
+    <div id="chatbox"></div>
+
+    <form name="message" action="">
+        <input name="usermsg" type="text" id="usermsg" size="63" />
+        <input name="submitmsg" type="submit"  id="submitmsg" value="Send" />
+    </form>
+</div>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"></script>
+<script type="text/javascript">
+// jQuery Document
+$(document).ready(function(){
+
+});
 </script>
-</div>
-<nav id="mainNav">
+<?
+session_start();
 
-<style>
-video{width: 1500px;
-      height: 350px
-      margin-left: 0px
-      margin-right: 0px
-              }
-</style>
-</nav>
-<!-- Page Content -->
-
-
-<main role="main">
-  <div id="demo" class="carousel slide" data-ride="carousel">
-
-    <!-- Indicators -->
-    <ul class="carousel-indicators">
-      <li data-target="#demo" data-slide-to="0" class="active"></li>
-      <li data-target="#demo" data-slide-to="1"></li>
-      <li data-target="#demo" data-slide-to="2"></li>
-      <li data-target="#demo" data-slide-to="3"></li>
-      <li data-target="#demo" data-slide-to="4"></li>
-      <li data-target="#demo" data-slide-to="5"></li>
-
-    </ul>
-
-    <!-- The slideshow -->
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <img src="https://como-funciona.com/wp-content/uploads/2018/12/c%C3%B3mo-funciona-el-hardware-800x400.jpg" alt="Procesador" width="1400" height="500">
-      </div>
-      <div class="carousel-item">
-        <img src="https://www.hd-tecnologia.com/imagenes/articulos/2020/07/El-negocio-de-hardware-para-PC-Gamer-aumentar%C3%A1-en-3.600-millones-de-d%C3%B3lares-en-2020-debido-a-la-pandemia-de-COVID-19-2-1000x576.jpg" alt="Placa base" width="1400" height="500">
-      </div>
-      <div class="carousel-item">
-        <img src=" https://internetpasoapaso.com/wp-content/uploads/Que-es-el-hardware.jpg" alt="Tarjetas gráficas" width="1400" height="500">
-      </div>
-      <div class="carousel-item ">
-        <img src="https://www.adslzone.net/app/uploads-adslzone.net/2019/03/hardware-pc.jpg" alt="Procesador" width="1400" height="500">
-      </div>
-      <div class="carousel-item">
-        <img src="https://mecaluxco.cdnwm.com/documents/20197/3018921/Image+-+header+-+servicio-hardware/1eff1021-a294-70d3-60d4-fa26c7a4b7d4?t=1513069794000&e=jpg" alt="Procesador" width="1400" height="500">
-      </div>
-      <div class="carousel-item">
-        <img src="https://www.profesionalreview.com/wp-content/uploads/2017/06/PC-Gaming.jpg" alt="Procesador" width="1400" height="500">
-      </div>
+function loginForm(){
+    echo'
+    <div id="loginform">
+    <form action="index.php" method="post">
+        <p>Please enter your name to continue:</p>
+        <label for="name">Name:</label>
+        <input type="text" name="name" id="name" />
+        <input type="submit" name="enter" id="enter" value="Enter" />
+    </form>
     </div>
+      <!-- FOOTER -->
+      <footer>
+        <div class="row-lg-3">
+            <div class="c-main-footer_link-list">
+              <h6> Nuestras redes sociales </h6>
+              <div style="width:100%;float:left;">
 
-    <!-- Left and right controls -->
-    <a class="carousel-control-prev" href="#demo" data-slide="prev">
-      <span class="carousel-control-prev-icon"></span>
-    </a>
-    <a class="carousel-control-next" href="#demo" data-slide="next">
-      <span class="carousel-control-next-icon"></span>
-    </a>
-  </div>
-  <div class="w3-teal">
-  </div>
-
-  <!-- Marketing messaging and featurettes
-  ================================================== -->
-  <!-- Wrap the rest of the page in another container to center all the content. -->
-<br>
-
-    <!-- Five columns of text below the carousel -->
-    <div class="container">
-    <div class="row">
-      <div class="col-lg-3">
-        <a href="Tarjeta gráfica.html"><img  src="https://i.pinimg.com/736x/e3/bc/1b/e3bc1b533b50c2695b58744eb993497d.jpg"class= "rounded-circle" width="140" height="140" ><title>Placeholder</title><rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#777" dy=".3em"></text></img>
-        <h2>Tarjeta gráfica</h2>
-        <p>Es una tarjeta de expansión a través de la cual el ordenador se encarga de procesar los datos que provienen de la UCP y transformarlos en información.</p>
-      </a>
-    </div><!-- /.col-lg-3 -->
-      <div class="col-lg-3">
-
-        <a href="Placa base.html"><img  src="https://i.pinimg.com/originals/a0/54/2b/a0542b2243183467a2eae1bac1eb8472.jpg"class= "rounded-circle" width="140" height="140" ><title>Placeholder</title><rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#777" dy=".3em"></text></img>
-        <h2>Placa base</h2>
-        <p>La placa base es el medio o la vía por donde todos los datos que circulan en un ordenador viajan desde un punto a otro. </p>
-      </a>
-    </div><!-- /.col-lg-3 -->
-      <div class="col-lg-3">
-        <a href="Procesadores.html"><img  src="https://i.pinimg.com/originals/46/28/e2/4628e21f815ba0506734fb7a0fddb6ef.png"class= "rounded-circle" width="140" height="140" ><title>Placeholder</title><rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#777" dy=".3em"></text></img>
-        <h2>Procesadores</h2>
-        <p>El procesador es el cerebro del sistema, justamente procesa todo lo que ocurre en la PC y ejecuta todas las acciones que existen.</p>
-      </a>
-    </div>  <!-- /.col-lg-3 -->
-      <div class="col-lg-3">
-
-        <a href="Memoria RAM.html"><img  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtW7H7RCsjSe8jUg0bQiMS12-ACA2Ys5MBmg&usqp=CAU"class= "rounded-circle" width="140" height="140" ><title>Placeholder</title><rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#777" dy=".3em"></text></img>
-        <h2>Memoria RAM</h2>
-        <p>La memoria RAM es la memoria principal de un dispositivo donde se almacena programas y datos informativos. </p>
-      </a>
-    </div><!-- /.col-lg-3 -->
-        <div class="col-lg-3">
-        <a href="Discos Duros.html"><img  src="https://www.muycomputer.com/wp-content/uploads/2018/07/DiscosDuros-1000x600.jpg"class= "rounded-circle" width="140" height="140" ><title>Placeholder</title><rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#777" dy=".3em"></text></img>
-        <h2>Discos Duros</h2>
-        <p>La placa base es el medio o la vía por donde todos los datos que circulan en un ordenador viajan desde un punto a otro. </p>
-      </a>
-    </div><!-- /.col-lg-3 -->
-    </div><!-- /.row -->
-  </div>
-  <style>
-  img src{background-color: black;}
-  </style>
-
-
-</body>
-<!-- FOOTER -->
-<footer>
-  <style>
-  h6{text-align: center;}
-    </style>
-  <div class="row-lg-3">
-      <div class="c-main-footer_link-list">
-        <h6> Nuestras redes sociales </h6>
-        <div style="width:100%;float:left;">
-
-        <ul class="social-icons">
-        <li>
-          <a tittle="Instagram" href="https://www.instagram.com/nightwarepc/">
-            <div style="width:33%;float:left;">
-          <img src="https://assets.stickpng.com/images/5a4e42e52da5ad73df7efe79.png" widht="30px" height="30px">
-            <h5>Instagram </h5>
+              <ul class="social-icons">
+              <li>
+                <a tittle="Instagram" href="https://www.instagram.com/nightwarepc/">
+                  <div style="width:33%;float:left;">
+                <img src="https://assets.stickpng.com/images/5a4e42e52da5ad73df7efe79.png" widht="30px" height="30px">
+                  <h5>Instagram </h5>
+                </div>
+                  </a>
+                  <a tittle="Twitter" href="https://twitter.com/NightwarePc">
+                    <div style="width:33%;float:left;">
+                  <img src="https://assets.stickpng.com/images/580b57fcd9996e24bc43c53e.png" widht="40px" height="40px">
+                  <h5>Twitter </h5>
+                </div>
+                  </a>
+                  <a tittle="Gmail" href="https://accounts.google.com/AccountChooser/signinchooser?service=mail&continue=https%3A%2F%2Fmail.google.com%2Fmail%2F&flowName=GlifWebSignIn&flowEntry=AccountChooser">
+                  <div style="width:33%;float:left;">
+                  <img src="https://assets.stickpng.com/images/5847fafdcef1014c0b5e48ce.png" widht="30px" height="30px">
+                      <h5>Gmail </h5>
+                  </a>
+                </div>
+              </div>
+                </li>
+            </div>
           </div>
-            </a>
-            <a tittle="Twitter" href="https://twitter.com/NightwarePc">
-              <div style="width:33%;float:left;">
-            <img src="https://assets.stickpng.com/images/580b57fcd9996e24bc43c53e.png" widht="40px" height="40px">
-            <h5>Twitter </h5>
-          </div>
-            </a>
-            <a tittle="Gmail" href="https://accounts.google.com/AccountChooser/signinchooser?service=mail&continue=https%3A%2F%2Fmail.google.com%2Fmail%2F&flowName=GlifWebSignIn&flowEntry=AccountChooser">
-            <div style="width:33%;float:left;">
-            <img src="https://assets.stickpng.com/images/5847fafdcef1014c0b5e48ce.png" widht="30px" height="30px">
-                <h5>Gmail </h5>
-            </a>
-          </div>
-        </div>
-          </li>
+        <p class="float-right"><a href="#">Back to top</a></p>
+        <p>©Copyright 2020 Company, Nightware, · <a href="#">Privacy</a> · <a href="#">Terms</a></p>
       </div>
-    </div>
-  <p class="float-right"><a href="#">Back to top</a></p>
-  <p>©Copyright 2020 Company, Nightware, · <a href="#">Privacy</a> · <a href="#">Terms</a></p>
-</div>
 
 
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script>window.jQuery || document.write('<script src="/docs/4.5/assets/js/vendor/jquery.slim.min.js"><\/script>')</script><script src="/docs/4.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
-</footer>
-</html>
+      <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+          <script>window.jQuery || document.write('<script src="/docs/4.5/assets/js/vendor/jquery.slim.min.js"><\/script>')</script><script src="/docs/4.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+      </footer>
+      </html>
